@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="RxFunWithFlags.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Fun With Flags!"
+    mc:Ignorable="d">
+    <StackLayout Margin="8">
+        <Entry x:Name="SearchEntry" Placeholder="Type the country name" />
+        <ListView HasUnevenRows="True" ItemsSource="{Binding Countries}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <!--<Frame
+                            Margin="2"
+                            BorderColor="LightGray"
+                            CornerRadius="3"
+                            HasShadow="False"
+                            VerticalOptions="CenterAndExpand">-->
+                        <StackLayout Padding="0,5,0,5" Orientation="Horizontal">
+                            <ffimageloadingsvg:SvgCachedImage
+                                Aspect="AspectFill"
+                                DownsampleToViewSize="True"
+                                HeightRequest="50"
+                                Source="{Binding Flag}"
+                                VerticalOptions="CenterAndExpand"
+                                WidthRequest="80" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                LineBreakMode="WordWrap"
+                                Text="{Binding Name}"
+                                VerticalOptions="CenterAndExpand"
+                                VerticalTextAlignment="Center" />
+                        </StackLayout>
+                        <!--</Frame>-->
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!--<ListView HasUnevenRows="True"
+                  ItemsSource="{Binding Countries}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="0,5,0,5">
+                            <ffimageloadingsvg:SvgCachedImage
+                                   DownsampleToViewSize="True"
+                                   VerticalOptions="CenterAndExpand"
+                                   Source="{Binding Flag}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="60"
+                                   WidthRequest="100" />
+                            <Label Text="{Binding Name}"
+                                   FontSize="Medium"
+                                   VerticalOptions="CenterAndExpand"
+                                   VerticalTextAlignment="Center"
+                                   FontAttributes="Bold"
+                                   LineBreakMode="WordWrap"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+    </StackLayout>
+</ContentPage>
