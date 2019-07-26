@@ -31,15 +31,13 @@ namespace RxFunWithFlags.Demo
             try
             {
                 await Task.Delay(500, cancellationToken);
-
                 searchTerm = e.NewTextValue;
 
                 if (cancellationToken.IsCancellationRequested)
                     return;
 
                 var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30), cancellationToken);
-                var countriesTask = Task.Run(async () => await FlagService.GetFlagsTask(e.NewTextValue),
-                    cancellationToken);
+                var countriesTask = Task.Run(async () => await FlagService.GetFlagsTask(e.NewTextValue),cancellationToken);
 
                 if (await Task.WhenAny(countriesTask, timeoutTask) == timeoutTask)
                     throw new TimeoutException();

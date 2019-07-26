@@ -56,21 +56,30 @@ namespace RxFunWithFlags
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            SearchEntry.TextChanged += CountrySearch_TextChanged;
+
+            Observable
+                .FromEventPattern<TextChangedEventArgs>(
+                    h => SearchEntry.TextChanged += h,
+                    h => SearchEntry.TextChanged -= h)
+                .Select(s => s.EventArgs.NewTextValue)
+                .Where(t => t.Length > 1)
+                .Throttle(TimeSpan.FromMilliseconds(500))
+                .DistinctUntilChanged()
+                .Select(t => FlagService.GetFlagsTask(t).ToObservable()
+                    .Timeout(TimeSpan.FromMilliseconds(30)))
+                .Switch()
+                .ObserveOn(SynchronizationContext.Current)
+                .Take(15)
+                .Subscribe(s => Countries.ReplaceRange(s));
+
+
+
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            SearchEntry.TextChanged -= CountrySearch_TextChanged;
-        }
-
-        private async void CountrySearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var countries = await FlagService.GetFlagsTask(e.NewTextValue);
-
-            Device.BeginInvokeOnMainThread(() =>
-                    Countries.ReplaceRange(countries));
+            
         }
 
 
