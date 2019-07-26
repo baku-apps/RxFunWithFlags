@@ -11,3 +11,4 @@ C:\src\RxFunWithFlags\RxFunWithFlags\RxFunWithFlags\obj\Debug\netstandard2.0\Xam
 C:\src\RxFunWithFlags\RxFunWithFlags\RxFunWithFlags\obj\Debug\netstandard2.0\RxFunWithFlags.dll
 C:\src\RxFunWithFlags\RxFunWithFlags\RxFunWithFlags\obj\Debug\netstandard2.0\ref\RxFunWithFlags.dll
 C:\src\RxFunWithFlags\RxFunWithFlags\RxFunWithFlags\obj\Debug\netstandard2.0\RxFunWithFlags.pdb
+C:\src\RxFunWithFlags\RxFunWithFlags\RxFunWithFlags\obj\Debug\netstandard2.0\RxFunWithFlags.csprojAssemblyReference.cache
